@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GosdumaMusic | {% block title %}Портал музыкальных заявок{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="nav-links">
+                <a href="{% url 'home' %}">🏠 Главная</a>
+                {% if user.is_authenticated %}
+                    {% if user.username == 'BraveGuar' %}
+                        <a href="{% url 'admin_panel' %}">⚙️ Админ-панель</a>
+                    {% else %}
+                        <a href="{% url 'profile' %}">👤 Личный кабинет</a>
+                        <a href="{% url 'create_application' %}">🎵 Новая заявка</a>
+                    {% endif %}
+                    <span class="username">Привет, {{ user.username }}!</span>
+                    <form action="{% url 'logout' %}" method="post" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">🚪 Выйти</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">🔐 Вход</a>
+                    <a href="{% url 'register' %}">📝 Регистрация</a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

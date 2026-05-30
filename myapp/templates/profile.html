@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>👤 Ваш профиль</h2>
+    <div class="profile-info">
+        <p><strong>Логин:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>ФИО:</strong> {{ user.profile.fio }}</p>
+        <p><strong>Телефон:</strong> {{ user.profile.phone }}</p>
+        <p><strong>Дата регистрации:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>🎵 Ваши музыкальные заявки</h2>
+    {% if applications %}
+        <div class="applications-list">
+            {% for app in applications %}
+                <div class="application-item">
+                    <strong>{{ app.title }}</strong><br>
+                    Дата: {{ app.event_date|date:"d.m.Y" }}<br>
+                    Жанр: {{ app.genre }}<br>
+                    Формат: {{ app.participation_format }}<br>
+                    Статус: <span class="status-badge status-{{ app.status }}">{{ app.get_status_display }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>У вас пока нет ни одной заявки.</p>
+        <a href="{% url 'create_application' %}" class="btn">➕ Создать первую заявку</a>
+    {% endif %}
+</div>
+{% endblock %}

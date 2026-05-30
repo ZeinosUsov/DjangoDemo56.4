@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Добро пожаловать{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>🎶 GosdumaMusic</h1>
+    <p>Портал для подачи музыкальных заявок на мероприятия.</p>
+    {% if user.is_authenticated %}
+        <p>Вы вошли как <strong>{{ user.username }}</strong>. Перейдите в личный кабинет, чтобы управлять заявками.</p>
+        <a href="{% url 'profile' %}" class="btn">Мои заявки</a>
+        <a href="{% url 'create_application' %}" class="btn">Создать заявку</a>
+    {% else %}
+        <p>Для подачи заявки необходимо зарегистрироваться или войти.</p>
+        <a href="{% url 'login' %}" class="btn">Войти</a>
+        <a href="{% url 'register' %}" class="btn">Регистрация</a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Новая заявка{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Создание музыкальной заявки</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Название мероприятия</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <label>Желаемая дата</label>
+            {{ form.event_date }}
+        </div>
+        <div class="form-group">
+            <label>Жанр музыки</label>
+            {{ form.genre }}
+        </div>
+        <div class="form-group">
+            <label>Формат участия</label>
+            {{ form.participation_format }}
+        </div>
+        <button type="submit" class="btn">Отправить заявку</button>
+    </form>
+</div>
+{% endblock %}
