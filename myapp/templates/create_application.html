@@ -4,11 +4,11 @@
 
 {% block content %}
 <div class="card">
-    <h2>Создание музыкальной заявки</h2>
-    <form method="post">
+    <h2>Создание заявки</h2>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
-            <label>Название мероприятия</label>
+            <label>Название</label>
             {{ form.title }}
         </div>
         <div class="form-group">
@@ -16,14 +16,18 @@
             {{ form.event_date }}
         </div>
         <div class="form-group">
-            <label>Жанр музыки</label>
-            {{ form.genre }}
+            <label>Категория</label>
+            {{ form.category }}
         </div>
         <div class="form-group">
-            <label>Формат участия</label>
-            {{ form.participation_format }}
+            <label>Формат</label>
+            {{ form.format }}
         </div>
-        <button type="submit" class="btn">Отправить заявку</button>
+        <div class="form-group">
+            <label>Фото (можно перетащить файл или выбрать из папки)</label>
+            {{ form.image }}
+        </div>
+        <button type="submit" class="btn">Отправить</button>
     </form>
 </div>
 {% endblock %}

@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="card">
-    <h2>👤 Ваш профиль</h2>
+    <h2>Профиль</h2>
     <div class="profile-info">
         <p><strong>Логин:</strong> {{ user.username }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>
@@ -15,22 +15,22 @@
 </div>
 
 <div class="card">
-    <h2>🎵 Ваши музыкальные заявки</h2>
+    <h2>Ваши заявки</h2>
     {% if applications %}
         <div class="applications-list">
             {% for app in applications %}
                 <div class="application-item">
                     <strong>{{ app.title }}</strong><br>
                     Дата: {{ app.event_date|date:"d.m.Y" }}<br>
-                    Жанр: {{ app.genre }}<br>
-                    Формат: {{ app.participation_format }}<br>
+                    Категория: {{ app.category }}<br>
+                    Формат: {{ app.format }}<br>
                     Статус: <span class="status-badge status-{{ app.status }}">{{ app.get_status_display }}</span>
                 </div>
             {% endfor %}
         </div>
     {% else %}
         <p>У вас пока нет ни одной заявки.</p>
-        <a href="{% url 'create_application' %}" class="btn">➕ Создать первую заявку</a>
+        <a href="{% url 'create_application' %}" class="btn">Создать заявку</a>
     {% endif %}
 </div>
 {% endblock %}

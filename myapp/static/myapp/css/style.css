@@ -230,3 +230,55 @@ input:focus, select:focus, textarea:focus {
     align-items: center;
     flex-wrap: wrap;
 }
+/* Сетка одобренных мероприятий */
+.approved-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.approved-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding-bottom: 15px;
+}
+
+.approved-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.event-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.no-image {
+    width: 100%;
+    height: 180px;
+    background: #ecf0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #bdc3c7;
+}
+
+.approved-card h3 {
+    margin: 15px 15px 10px;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+.approved-card p {
+    margin: 5px 15px;
+    color: #555;
+    font-size: 0.9rem;
+}
+

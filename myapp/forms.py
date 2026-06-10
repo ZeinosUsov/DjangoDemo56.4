@@ -47,19 +47,17 @@ class CustomUserCreationForm(UserCreationForm):
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = ['title', 'event_date', 'genre', 'participation_format']
+        fields = ['title', 'event_date', 'category', 'format', 'image']
         widgets = {
             'event_date': forms.DateInput(attrs={'type': 'date'}),
-            'title': forms.TextInput(attrs={'placeholder': 'Название концерта, фестиваля...'}),
-            'genre': forms.TextInput(attrs={'placeholder': 'Рок, поп, классика, электронная...'}),
-            'participation_format': forms.TextInput(attrs={'placeholder': 'Сольное выступление, группа, оркестр...'}),
+            'title': forms.TextInput(attrs={'placeholder': 'Например: выступление, мероприятие, проект...'}),
+            'category': forms.TextInput(attrs={'placeholder': 'Любая категория'}),
+            'format': forms.TextInput(attrs={'placeholder': 'Формат участия'}),
         }
         labels = {
-            'title': 'Название мероприятия',
+            'title': 'Название',
             'event_date': 'Желаемая дата',
-            'genre': 'Жанр музыки',
-            'participation_format': 'Формат участия',
+            'category': 'Категория',
+            'format': 'Формат',
+            'image': 'Фото (необязательно)',
         }
-
-class StatusChangeForm(forms.Form):
-    status = forms.ChoiceField(choices=Application.STATUS_CHOICES, label='Новый статус')
